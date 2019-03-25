@@ -1,4 +1,7 @@
 # Titanic-Survival
+
+Note: If you are having trouble opening the notebook, please open the markdown version in the markdown folder 
+
 Solution to the Titanic: Machine Learning from Disaster challenge on Kaggle (https://www.kaggle.com/c/titanic) using Stacking. Stacking is an ensemble technique where predictions from multiple models are used to generate a second level model called meta-model. This second-layer algorithm is trained to optimally combine the model predictions to form a new set of predictions.
 
 
