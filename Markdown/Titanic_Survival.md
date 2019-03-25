@@ -2426,7 +2426,7 @@ y = train['Survived']
 
 ```
 
-## Cross Validation
+## Stacking
 
 I will use the entire train data to perform Cross Validation. I may get better results with KNN and SVC if I scale the data but I have skipped that step.
 
@@ -2456,130 +2456,6 @@ extraTreesClass = ExtraTreesClassifier(n_estimators=50,bootstrap=False,criterion
                                         min_samples_split=10,max_depth=None)
 gradientBClass = GradientBoostingClassifier(n_estimators=20,max_depth=3,max_features= 5,min_samples_leaf=3,min_samples_split=2)
 ```
-
-
-```python
-
-res_alg = ['Random Forest','Logistic Regression','SVC','KNN','XG Boost','Naive Bayes','ADA Boost','Extra Trees','Gradient Boost']
-res_acc = []
-res_acc.append(cross_val_score(rfClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(logClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(svcClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(knnClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(xgbClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(nbClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(adaClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(extraTreesClass,X,y,scoring='accuracy',cv=10).mean()*100)
-res_acc.append(cross_val_score(gradientBClass,X,y,scoring='accuracy',cv=10).mean()*100)
-```
-
-
-```python
-cv_results = pd.DataFrame({'Algorithm':res_alg,
-                  'Accuracy':res_acc})
-```
-
-
-```python
-cv_results.sort_values('Accuracy',ascending=False)
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Accuracy</th>
-      <th>Algorithm</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>4</th>
-      <td>83.052009</td>
-      <td>XG Boost</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>82.828538</td>
-      <td>Random Forest</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>82.828538</td>
-      <td>ADA Boost</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>82.605124</td>
-      <td>Gradient Boost</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>82.486437</td>
-      <td>SVC</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>81.929577</td>
-      <td>Extra Trees</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>81.704943</td>
-      <td>Logistic Regression</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>76.777182</td>
-      <td>KNN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>76.231841</td>
-      <td>Naive Bayes</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-plt.figure(figsize=(12,8))
-cv_results = cv_results.sort_values(['Accuracy'],ascending=False).reset_index(drop=True)
-sns.set(style="whitegrid")
-sns.barplot(data=cv_results,x='Accuracy',y='Algorithm')
-
-```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x23d9568ac8>
-
-
-
-
-![png](output_103_1.png)
-
 
 ## Stacking
 
@@ -3053,7 +2929,7 @@ sns.heatmap(base_predictions_train.corr(),annot=True)
 
 
 
-![png](output_120_1.png)
+![png](output_116_1.png)
 
 
 
